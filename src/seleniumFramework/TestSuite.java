@@ -17,13 +17,13 @@ import org.openqa.selenium.io.FileHandler;
 public class TestSuite {
 	
 	public static void main(String[] args) throws IOException {
-		
-		//testOne();
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\persi\\eclipse-workspace\\ProQuestSeleniumProject\\lib\\chromedriver_win32\\chromedriver.exe");
+		testOne();
 		testTwo();
 	}
 	
 	public static void testOne() throws IOException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\persi\\eclipse-workspace\\ProQuestSeleniumProject\\lib\\chromedriver_win32\\chromedriver.exe");
+		
 		final String url = "http://www.google.com";
 		WebDriver driver = new ChromeDriver();
 		WebElement element = null;
@@ -68,8 +68,8 @@ public class TestSuite {
 		driver.close();
 	}
 	
-	public static void testTwo() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\persi\\eclipse-workspace\\ProQuestSeleniumProject\\lib\\chromedriver_win32\\chromedriver.exe");
+	public static void testTwo() throws IOException {
+		
 		final String url = "https://www.proquest.com/";
 		final String screenShotFile = "proquest_search_qa_result.png";
 		WebDriver driver = new ChromeDriver();
@@ -83,13 +83,9 @@ public class TestSuite {
 		element.sendKeys(Keys.RETURN);
 		
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileHandler.copy(screenshot, new File(screenShotFile));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
+		FileHandler.copy(screenshot, new File(screenShotFile));
+
 		driver.close();
 	}
 }
